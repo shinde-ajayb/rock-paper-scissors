@@ -75,9 +75,19 @@ function game() {
       loopCounter++;
     }
   }
-  printScore();
+  reportGameResult();
 }
-function printScore() {
-  console.log(playerScore);
-  console.log(computerScore);
+
+function reportGameResult() {
+  if (playerScore > computerScore) {
+    console.log("Well played,You won the game!.");
+  } else if (playerScore < computerScore) {
+    console.log("You lost the game, Better luck next time!.");
+  } else {
+    console.log("Game Tied");
+  }
+  console.log(
+    `Final Score: \n You = ${playerScore}, \nComputerScore = ${computerScore}`
+  );
 }
+
