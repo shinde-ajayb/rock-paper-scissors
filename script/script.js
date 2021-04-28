@@ -10,3 +10,18 @@ function computerPlay() {
     return "Scissors";
   }
 }
+
+//take user input
+
+function playerPlay() {
+  let playerSelection = prompt("Enter Your Choice");
+  if (
+    playerSelection !== "rock" &&
+    playerSelection !== "paper" &&
+    playerSelection !== "scissors"
+  ) {
+    alert("Invalid Input.");
+  } else {
+    return playerSelection;
+  }
+}
