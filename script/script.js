@@ -56,4 +56,18 @@ function makeResultString(playerWin, tie, playerSelection, computerSelection) {
     result = `You Lose! ${computerSelection} beats ${playerSelection}`;
     return result;
   }
+}
+
+//play 5 rounds
+function game() {
+  let loopCounter = 0;
+  while (loopCounter < 5) {
+    let playerSelection = playerPlay();
+    if (playerSelection) {
+      let computerSelection = computerPlay();
+      console.log(singleRound(playerSelection, computerSelection));
+    }
+    loopCounter++;
+  }
+}
 
