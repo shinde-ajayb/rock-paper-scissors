@@ -25,3 +25,35 @@ function playerPlay() {
     return playerSelection;
   }
 }
+
+//play single round of game
+
+
+function singleRound(playerSelection, computerSelection) {
+  let playerWin = false;
+  let tie = false;
+  computerSelection = computerSelection.toLowerCase();
+  if (playerSelection == computerSelection) {
+    tie = true;
+  } else if (playerSelection == "rock" && computerSelection == "scissors") {
+    playerWin = true;
+  } else if (playerSelection == "paper" && computerSelection == "rock") {
+    playerWin = true;
+  } else if (playerSelection == "scissors" && computerSelection == "paper") {
+    playerWin = true;
+  }
+  return makeResultString(playerWin, tie, playerSelection, computerSelection);
+}
+function makeResultString(playerWin, tie, playerSelection, computerSelection) {
+  let result = "";
+  if (tie) {
+    result = `tie`;
+    return result;
+  } else if (playerWin) {
+    result = `you Win! ${playerSelection} beats ${computerSelection}.`;
+    return result;
+  } else {
+    result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+    return result;
+  }
+
