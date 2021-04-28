@@ -14,7 +14,7 @@ function computerPlay() {
 //take user input
 
 function playerPlay() {
-  let playerSelection = prompt("Enter Your Choice");
+  let playerSelection = prompt("Enter Your Choice").toLowerCase();
   if (
     playerSelection !== "rock" &&
     playerSelection !== "paper" &&
