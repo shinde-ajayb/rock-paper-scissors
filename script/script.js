@@ -28,7 +28,6 @@ function playerPlay() {
 
 //play single round of game
 
-
 function singleRound(playerSelection, computerSelection) {
   let playerWin = false;
   let tie = false;
@@ -41,6 +40,11 @@ function singleRound(playerSelection, computerSelection) {
     playerWin = true;
   } else if (playerSelection == "scissors" && computerSelection == "paper") {
     playerWin = true;
+  }
+  if (playerWin && tie == false) {
+    playerScore++;
+  } else if (tie != true) {
+    computerScore++;
   }
   return makeResultString(playerWin, tie, playerSelection, computerSelection);
 }
@@ -59,6 +63,8 @@ function makeResultString(playerWin, tie, playerSelection, computerSelection) {
 }
 
 //play 5 rounds
+let playerScore = 0;
+let computerScore = 0;
 function game() {
   let loopCounter = 0;
   while (loopCounter < 5) {
@@ -66,10 +72,12 @@ function game() {
     if (playerSelection) {
       let computerSelection = computerPlay();
       console.log(singleRound(playerSelection, computerSelection));
-    }else {
-      continue;
+      loopCounter++;
     }
-    loopCounter++;
   }
+  printScore();
 }
-
+function printScore() {
+  console.log(playerScore);
+  console.log(computerScore);
+}
