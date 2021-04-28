@@ -66,6 +66,8 @@ function game() {
     if (playerSelection) {
       let computerSelection = computerPlay();
       console.log(singleRound(playerSelection, computerSelection));
+    }else {
+      continue;
     }
     loopCounter++;
   }
