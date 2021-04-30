@@ -62,22 +62,19 @@ function makeResultString(playerWin, tie, playerSelection, computerSelection) {
   }
 }
 
-//play 5 rounds
 let playerScore = 0;
 let computerScore = 0;
-function game() {
-  let loopCounter = 0;
-  while (loopCounter < 5) {
-    let playerSelection = playerPlay();
-    if (playerSelection) {
-      let computerSelection = computerPlay();
-      console.log(singleRound(playerSelection, computerSelection));
-      loopCounter++;
-    }
-  }
-  reportGameResult();
+let computerChoiceNode = document.querySelector("#computer-choice");
+function game(playerSelection) {
+  let computerSelection = computerPlay();
+  computerChoiceNode.textContent = `Computer Choice => ${computerSelection}`;
+  displayRoundResult(singleRound(playerSelection, computerSelection));
 }
 
+let roundResultNode = document.querySelector("#round-result");
+function displayRoundResult(singleRoundResult) {
+  roundResultNode.textContent = singleRoundResult;
+}
 function reportGameResult() {
   if (playerScore > computerScore) {
     console.log("Well played,You won the game!.");
@@ -91,3 +88,13 @@ function reportGameResult() {
   );
 }
 
+//event listener on button
+let playerSelection = "";
+let btnGroup = document.querySelectorAll(".btn");
+btnGroup = Array.from(btnGroup);
+btnGroup.forEach((btn) =>
+  btn.addEventListener("click", (e) => {
+    playerSelection = e.target.value;
+    game(playerSelection);
+  })
+);
