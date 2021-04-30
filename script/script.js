@@ -67,11 +67,13 @@ let computerScore = 0;
 let playerScoreNode = document.querySelector("#user-score");
 let computerScoreNode = document.querySelector("#computer-score");
 let computerChoiceNode = document.querySelector("#computer-choice");
-function game(playerSelection) {
+function game(e) {
+  let playerSelection = e.target.value;
   let computerSelection = computerPlay();
   computerChoiceNode.textContent = `Computer Choice => ${computerSelection}`;
   displayRoundResult(singleRound(playerSelection, computerSelection));
   updateScoreScreen();
+  checkForWinner();
 }
 
 let roundResultNode = document.querySelector("#round-result");
@@ -82,6 +84,16 @@ function displayRoundResult(singleRoundResult) {
 function updateScoreScreen() {
   computerScoreNode.textContent = computerScore;
   playerScoreNode.textContent = playerScore;
+}
+let finalResultNode = document.querySelector("#final-result");
+function checkForWinner() {
+  if (playerScore == 5) {
+    finalResultNode.textContent = `You Rock!, You Won!`;
+    btnGroup.forEach((btn) => btn.removeEventListener("click", game));
+  } else if (computerScore == 5) {
+    finalResultNode.textContent = `You Lost The Game.`;
+    btnGroup.forEach((btn) => btn.removeEventListener("click", game));
+  }
 }
 function reportGameResult() {
   if (playerScore > computerScore) {
@@ -100,9 +112,4 @@ function reportGameResult() {
 let playerSelection = "";
 let btnGroup = document.querySelectorAll(".btn");
 btnGroup = Array.from(btnGroup);
-btnGroup.forEach((btn) =>
-  btn.addEventListener("click", (e) => {
-    playerSelection = e.target.value;
-    game(playerSelection);
-  })
-);
+btnGroup.forEach((btn) => btn.addEventListener("click", game));
