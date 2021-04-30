@@ -64,16 +64,24 @@ function makeResultString(playerWin, tie, playerSelection, computerSelection) {
 
 let playerScore = 0;
 let computerScore = 0;
+let playerScoreNode = document.querySelector("#user-score");
+let computerScoreNode = document.querySelector("#computer-score");
 let computerChoiceNode = document.querySelector("#computer-choice");
 function game(playerSelection) {
   let computerSelection = computerPlay();
   computerChoiceNode.textContent = `Computer Choice => ${computerSelection}`;
   displayRoundResult(singleRound(playerSelection, computerSelection));
+  updateScoreScreen();
 }
 
 let roundResultNode = document.querySelector("#round-result");
 function displayRoundResult(singleRoundResult) {
   roundResultNode.textContent = singleRoundResult;
+}
+
+function updateScoreScreen() {
+  computerScoreNode.textContent = computerScore;
+  playerScoreNode.textContent = playerScore;
 }
 function reportGameResult() {
   if (playerScore > computerScore) {
